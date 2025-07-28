@@ -1,0 +1,209 @@
+{
+  "cards": [
+    {
+      "id": "1753360304366",
+      "title": "Smart Budget Tracker",
+      "description": "A comprehensive tool for managing personal finances, tracking expenses, and setting budgets. hub for managing client onboarding processes, including document submission and status trackin  hub for managing client onboarding processes, including document submission and status tracking. Update and audit Firebase settings across multiple environments.Update and audit Firebase settings across multiple environments.Update and audit Firebase settings across multiple environments. ",
+      "liveUrl": "https://live.budgetly.ai",
+      "GitHubUrl": "https://github.com/prashant/smart-budget-tracker",
+      "UserAccess": ["client", "admin"],
+      "activeStatus": true,
+      "updatedBy": "tara",
+      "ownership": "Personal Finance",
+      "lastUpdatedAt": "2025-07-23T09:00:00Z"
+    },
+   
+    {
+      "id": "1753360304358",
+      "title": "Maharashtra IT Trends",
+      "description": "Visual dashboard showcasing emerging tech developments in Maharashtra.",
+      "liveUrl": "https://mahaitinsights.io",
+      "GitHubUrl": "https://github.com/prashant/maharashtra-it",
+      "UserAccess": ["client", "reporter"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "Research & Outreach"
+    },
+    {
+      "id": "1753360304365",
+      "title": "New Tool",
+      "description": "A new productivity app",
+      "liveUrl": "https://example.com",
+      "GitHubUrl": "https://github.com/example/tool",
+      "UserAccess": ["admin"],
+      "activeStatus": true,
+      "updatedBy": "alex",
+      "ownership": "Productivity",
+      "lastUpdatedAt": "2025-07-24T10:00:00Z"
+    },
+    {
+      "id": "1753360304360",
+      "title": "UX Feedback Loop",
+      "description": "Collect, analyze, and respond to UX feedback in real-time.",
+      "liveUrl": "https://feedbackloop.live",
+      "GitHubUrl": "https://github.com/prashant/ux-feedback",
+      "UserAccess": ["tester", "designer"],
+      "activeStatus": false,
+      "updatedBy": "megha",
+      "ownership": "Design QA",
+      "lastUpdatedAt": "2025-07-17T13:20:00Z"
+    },
+    {
+      "id": "1753360304367",
+      "title": "Gen AI Showcase",
+      "description": "Library of Gen AI demos for client onboarding and exploration.",
+      "liveUrl": "https://showcase.antixx.tech",
+      "GitHubUrl": "https://github.com/antixxtechhub/gen-ai-showcase",
+      "UserAccess": ["client", "developer"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "Client Enablement",
+      "lastUpdatedAt": "2025-07-23T03:10:00Z"
+    },
+    {
+      "id": "1753360304368",
+      "title": "PurgeCSS Audit Tool",
+      "description": "Scan stylesheets for unused CSS and generate audit reports.",
+      "liveUrl": "https://purgecheck.cssopt.io",
+      "GitHubUrl": "https://github.com/prashant/purgecss-audit",
+      "UserAccess": ["developer", "admin"],
+      "activeStatus": false,
+      "updatedBy": "neha",
+      "ownership": "Frontend Guild",
+      "lastUpdatedAt": "2025-07-15T22:00:00Z"
+    },
+    {
+      "id": "1753360304369",
+      "title": "MongoDB Metrics Tracker",
+      "description": "Monitor MongoDB performance and database health indicators.",
+      "liveUrl": "https://mongodbtracker.com",
+      "GitHubUrl": "https://github.com/prashant/mongo-metrics",
+      "UserAccess": ["data-scientist", "admin"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "DataOps",
+      "lastUpdatedAt": "2025-07-23T13:00:00Z"
+    },
+    {
+      "id": "1753360304370",
+      "title": "Passive Income Dashboard",
+      "description": "Track multiple passive income channels and performance metrics.",
+      "liveUrl": "https://incomeview.moneywise.io",
+      "GitHubUrl": "https://github.com/prashant/passive-income",
+      "UserAccess": ["client", "advisor"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "Personal Finance",
+      "lastUpdatedAt": "2025-07-23T09:00:00Z"
+    },
+    {
+      "id": "1753360304371",
+      "title": "Accessibility Tester",
+      "description": "Perform accessibility audits and WCAG compliance checks.",
+      "liveUrl": "https://accesscheck.io",
+      "GitHubUrl": "https://github.com/prashant/a11y-tester",
+      "UserAccess": ["designer", "auditor"],
+      "activeStatus": true,
+      "updatedBy": "shruti",
+      "ownership": "Inclusivity Team",
+      "lastUpdatedAt": "2025-07-23T01:45:00Z"
+    },
+   
+    {
+      "id": "1753360304385",
+      "title": "Angular Demo Portal",
+      "description": "Live showcase of dynamic Angular features and client-ready demos.",
+      "liveUrl": "https://demo.angularhub.io",
+      "GitHubUrl": "https://github.com/prashant/angular-live-demo",
+      "UserAccess": ["developer", "reviewer"],
+      "activeStatus": true,
+      "updatedBy": "rahul",
+      "ownership": "Frontend Guild",
+      "lastUpdatedAt": "2025-07-22T14:48:00Z"
+    },
+    {
+      "id": "1753360304386",
+      "title": "Ephemeral PR Preview",
+      "description": "Temporary previews of PR builds for streamlined review workflows.",
+      "liveUrl": "https://preview.devstream.tech",
+      "GitHubUrl": "https://github.com/prashant/preview-stream",
+      "UserAccess": ["tester", "developer"],
+      "activeStatus": false,
+      "updatedBy": "sneha",
+      "ownership": "DevOps",
+      "lastUpdatedAt": "2025-07-19T09:02:45Z"
+    },
+    {
+      "id": "1753360304387",
+      "title": "n8n Automation Studio",
+      "description": "Design, test, and monitor workflows for business and ops automation.",
+      "liveUrl": "https://n8n.flowcraft.io",
+      "GitHubUrl": "https://github.com/prashant/n8n-flowcraft",
+      "UserAccess": ["admin", "analyst", "intern"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "Automation Squad",
+      "lastUpdatedAt": "2025-07-20T16:35:00Z"
+    },
+    {
+      "id": "1753360304388",
+      "title": "Gen AI Pitch Lab",
+      "description": "Interactive demo suite to pitch Gen AI capabilities with live config.",
+      "liveUrl": "https://pitch.antixx.techhub.ai",
+      "GitHubUrl": "https://github.com/antixxtechhub/gen-ai-lab",
+      "UserAccess": ["admin", "client"],
+      "activeStatus": true,
+      "updatedBy": "tanvi",
+      "ownership": "ANTIXX TECHHUB",
+      "lastUpdatedAt": "2025-07-23T12:10:15Z"
+    },
+    {
+      "id": "1753360304372",
+      "title": "Config Sync Portal",
+      "description": "Manage and push live configuration updates across environments.",
+      "liveUrl": "https://syncportal.liveedit.io",
+      "GitHubUrl": "https://github.com/prashant/config-sync",
+      "UserAccess": ["developer", "admin"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "Infra Team",
+      "lastUpdatedAt": "2025-07-22T08:22:00Z"
+    },
+    {
+      "id": "1753360304373",
+      "title": "Realtime Audit Dashboard",
+      "description": "Compliance and activity dashboard with historical audit trails.",
+      "liveUrl": "https://auditcheck.io",
+      "GitHubUrl": "https://github.com/prashant/audit-dashboard",
+      "UserAccess": ["analyst", "compliance"],
+      "activeStatus": false,
+      "updatedBy": "shruti",
+      "ownership": "Risk & Compliance",
+      "lastUpdatedAt": "2025-07-17T11:45:27Z"
+    },
+    {
+      "id": "1753360304374",
+      "title": "Style Guide Viewer",
+      "description": "Live rendering of design tokens and UI components with accessibility check.",
+      "liveUrl": "https://ui.styleview.app",
+      "GitHubUrl": "https://github.com/prashant/style-guide",
+      "UserAccess": ["designer", "dev"],
+      "activeStatus": true,
+      "updatedBy": "prashant",
+      "ownership": "UX Guild",
+      "lastUpdatedAt": "2025-07-23T06:30:00Z"
+    },
+    {
+      "id": "1753360304375",
+      "title": "Firebase Config Editor",
+      "description": "Update and audit Firebase settings across multiple environments.",
+      "liveUrl": "https://config.firebaseview.io",
+      "GitHubUrl": "https://github.com/prashant/firebase-config",
+      "UserAccess": ["admin", "developer"],
+      "activeStatus": false,
+      "updatedBy": "arjun",
+      "ownership": "Platform Core",
+      "lastUpdatedAt": "2025-07-18T17:00:00Z"
+    }
+  ]
+}
