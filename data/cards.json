@@ -3,6 +3,7 @@
     {
       "id": "1753360304366",
       "title": "Smart Budget Tracker",
+      "projectdomain": "SAP",
       "description": "A comprehensive tool for managing personal finances, tracking expenses, and setting budgets. hub for managing client onboarding processes, including document submission and status trackin  hub for managing client onboarding processes, including document submission and status tracking. Update and audit Firebase settings across multiple environments.Update and audit Firebase settings across multiple environments.Update and audit Firebase settings across multiple environments. ",
       "liveUrl": "https://live.budgetly.ai",
       "GitHubUrl": "https://github.com/prashant/smart-budget-tracker",
@@ -11,22 +12,27 @@
       "updatedBy": "tara",
       "ownership": "Personal Finance",
       "lastUpdatedAt": "2025-07-23T09:00:00Z"
+     
     },
    
     {
       "id": "1753360304358",
       "title": "Maharashtra IT Trends",
+       "projectdomain": "ServiceNow",
       "description": "Visual dashboard showcasing emerging tech developments in Maharashtra.",
       "liveUrl": "https://mahaitinsights.io",
       "GitHubUrl": "https://github.com/prashant/maharashtra-it",
       "UserAccess": ["client", "reporter"],
       "activeStatus": true,
       "updatedBy": "prashant",
-      "ownership": "Research & Outreach"
+      "ownership": "Research & Outreach",
+      "lastUpdatedAt": "2025-07-23T08:30:00Z"
+     
     },
     {
       "id": "1753360304365",
       "title": "New Tool",
+        "projectdomain": "BMC Helix",
       "description": "A new productivity app",
       "liveUrl": "https://example.com",
       "GitHubUrl": "https://github.com/example/tool",
@@ -35,6 +41,7 @@
       "updatedBy": "alex",
       "ownership": "Productivity",
       "lastUpdatedAt": "2025-07-24T10:00:00Z"
+    
     },
     {
       "id": "1753360304360",
@@ -46,7 +53,8 @@
       "activeStatus": false,
       "updatedBy": "megha",
       "ownership": "Design QA",
-      "lastUpdatedAt": "2025-07-17T13:20:00Z"
+      "lastUpdatedAt": "2025-07-17T13:20:00Z",
+      "projectdomain": "ServiceNow"
     },
     {
       "id": "1753360304367",
@@ -58,7 +66,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "Client Enablement",
-      "lastUpdatedAt": "2025-07-23T03:10:00Z"
+      "lastUpdatedAt": "2025-07-23T03:10:00Z",
+      "projectdomain": "Salesforce"
     },
     {
       "id": "1753360304368",
@@ -70,7 +79,8 @@
       "activeStatus": false,
       "updatedBy": "neha",
       "ownership": "Frontend Guild",
-      "lastUpdatedAt": "2025-07-15T22:00:00Z"
+      "lastUpdatedAt": "2025-07-15T22:00:00Z",
+      "projectdomain": "DevOps"
     },
     {
       "id": "1753360304369",
@@ -82,7 +92,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "DataOps",
-      "lastUpdatedAt": "2025-07-23T13:00:00Z"
+      "lastUpdatedAt": "2025-07-23T13:00:00Z",
+      "projectdomain": "SAP"
     },
     {
       "id": "1753360304370",
@@ -94,7 +105,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "Personal Finance",
-      "lastUpdatedAt": "2025-07-23T09:00:00Z"
+      "lastUpdatedAt": "2025-07-23T09:00:00Z",
+      "projectdomain": "BMC Helix"
     },
     {
       "id": "1753360304371",
@@ -106,7 +118,8 @@
       "activeStatus": true,
       "updatedBy": "shruti",
       "ownership": "Inclusivity Team",
-      "lastUpdatedAt": "2025-07-23T01:45:00Z"
+      "lastUpdatedAt": "2025-07-23T01:45:00Z",
+      "projectdomain": "ServiceNow"
     },
    
     {
@@ -119,7 +132,8 @@
       "activeStatus": true,
       "updatedBy": "rahul",
       "ownership": "Frontend Guild",
-      "lastUpdatedAt": "2025-07-22T14:48:00Z"
+      "lastUpdatedAt": "2025-07-22T14:48:00Z",
+      "projectdomain": "Salesforce"
     },
     {
       "id": "1753360304386",
@@ -131,7 +145,8 @@
       "activeStatus": false,
       "updatedBy": "sneha",
       "ownership": "DevOps",
-      "lastUpdatedAt": "2025-07-19T09:02:45Z"
+      "lastUpdatedAt": "2025-07-19T09:02:45Z",
+      "projectdomain": "DevOps"
     },
     {
       "id": "1753360304387",
@@ -143,7 +158,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "Automation Squad",
-      "lastUpdatedAt": "2025-07-20T16:35:00Z"
+      "lastUpdatedAt": "2025-07-20T16:35:00Z",
+      "projectdomain": "SAP"
     },
     {
       "id": "1753360304388",
@@ -155,7 +171,8 @@
       "activeStatus": true,
       "updatedBy": "tanvi",
       "ownership": "ANTIXX TECHHUB",
-      "lastUpdatedAt": "2025-07-23T12:10:15Z"
+      "lastUpdatedAt": "2025-07-23T12:10:15Z",
+      "projectdomain": "Salesforce"
     },
     {
       "id": "1753360304372",
@@ -167,7 +184,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "Infra Team",
-      "lastUpdatedAt": "2025-07-22T08:22:00Z"
+      "lastUpdatedAt": "2025-07-22T08:22:00Z",
+      "projectdomain": "BMC Helix"
     },
     {
       "id": "1753360304373",
@@ -179,7 +197,8 @@
       "activeStatus": false,
       "updatedBy": "shruti",
       "ownership": "Risk & Compliance",
-      "lastUpdatedAt": "2025-07-17T11:45:27Z"
+      "lastUpdatedAt": "2025-07-17T11:45:27Z",
+      "projectdomain": "ServiceNow"
     },
     {
       "id": "1753360304374",
@@ -191,7 +210,8 @@
       "activeStatus": true,
       "updatedBy": "prashant",
       "ownership": "UX Guild",
-      "lastUpdatedAt": "2025-07-23T06:30:00Z"
+      "lastUpdatedAt": "2025-07-23T06:30:00Z",
+      "projectdomain": "SAP"
     },
     {
       "id": "1753360304375",
@@ -203,7 +223,8 @@
       "activeStatus": false,
       "updatedBy": "arjun",
       "ownership": "Platform Core",
-      "lastUpdatedAt": "2025-07-18T17:00:00Z"
+      "lastUpdatedAt": "2025-07-18T17:00:00Z",
+      "projectdomain": "DevOps"
     }
   ]
 }

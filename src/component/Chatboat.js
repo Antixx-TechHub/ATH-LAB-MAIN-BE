@@ -90,9 +90,9 @@ const handleSend = async (e) => {
       </div>
 
       {isOpen && (
-        
-     <div className="fixed top-8 rounded-lg bottom-6 right-16 w-[42%] bg-black/30 bg-opacity-50 z-50 flex items-center justify-center">
-  <div className="w-full h-full rounded-lg shadow-lg flex flex-col bg-[url('/asset/bg1.jpg')] bg-cover bg-center bg-no-repeat">
+  <div className="fixed top-4 bottom-4 right-2 md:right-16 md:top-8 md:bottom-6 w-[95%] md:w-[42%] bg-black/30 bg-opacity-50 z-50 flex items-center justify-center">
+    <div className="w-full h-full overflow-y-auto rounded-lg shadow-lg flex flex-col bg-[url('/asset/bg1.jpg')] bg-cover bg-center bg-no-repeat">
+
     {/* Optional: Add a semi-transparent overlay for readability */}
     {/* <div className="absolute inset-0 bg-black/30 rounded-lg"></div> */}
 
