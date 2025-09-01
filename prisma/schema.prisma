@@ -1,0 +1,37 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        BigInt    @id @default(autoincrement())
+  username  String    @unique @db.VarChar(100)
+  password  String    @db.VarChar(255) // Store hashed passwords
+  firstname String    @db.VarChar(100)
+  lastname  String    @db.VarChar(100)
+  role      String[]  @db.VarChar(100) // e.g., ["admin", "user"]
+  projects  projects[] @relation("ProjectOwnership")
+  teamProjects projects[] @relation("ProjectTeam")
+}
+
+model projects {
+  id            BigInt    @id @default(autoincrement())
+  title         String    @db.VarChar(255)
+  projectdomain String    @db.VarChar(100)
+  description   String?   @db.Text
+  liveUrl       String?   @db.VarChar(255)
+  GitHubUrl     String?   @db.VarChar(255)
+  UserAccess    String[]
+  activeStatus  Boolean   @default(true)
+  updatedBy     String    @db.VarChar(100)
+  lastUpdatedAt DateTime  @db.Timestamptz
+  ownership     BigInt
+  Team          BigInt[]
+  owner         users     @relation("ProjectOwnership", fields: [ownership], references: [id])
+  teamMembers   users[]   @relation("ProjectTeam")
+}
