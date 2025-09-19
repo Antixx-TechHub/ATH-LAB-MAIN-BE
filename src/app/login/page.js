@@ -25,28 +25,27 @@ const Login = () => {
 
     setIsLoading(true);
 
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+try {
+  const response = await fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, password }),
+  });
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
+  if (!response.ok) {
+    throw new Error("Login failed");
+  }
 
-      const { token, user } = await response.json();
-      localStorage.setItem("token", token); // Store token
-      router.push("/dashboard"); // Redirect to dashboard
-    } catch (err) {
-      setError("Invalid credentials");
-      console.error("Authentication error:", err);
-    } finally {
-      setIsLoading(false);
-    }
+  const { user } = await response.json(); // No token returned in response
+  router.push("/dashboard"); // Redirect to dashboard
+} catch (err) {
+  setError("Invalid credentials");
+  console.error("Authentication error:", err);
+} finally {
+  setIsLoading(false);
+}
   };
 
   return (

@@ -107,6 +107,10 @@ const Signup = () => {
           >
             {isLoading ? "Signing up..." : "Signup"}
           </button>
+           <p className="mt-4 text-center">
+          Already Sign Up?{" "}
+          <a href="/login" className="text-blue-500 hover:underline">Login</a>
+        </p>
         </div>
       </div>
     </div>
