@@ -1,10 +1,13 @@
 // ./pages/api/projects.js
 const { prisma } = require('../../lib/prisma');
 const auth = require('../../lib/auth');
+
 console.log('Auth module:', auth); // Debug import
 const { verifyToken } = auth;
 
+
 export default async function handler(req, res) {
+   // const cookies = req.headers.cookie ? cookie.parse(req.headers.cookie) : {};
   const token = req.cookies.authToken;
   //console.log('Token:', token); // Debug token
   let decoded = null;
@@ -113,9 +116,20 @@ export default async function handler(req, res) {
       if (!project) {
         return res.status(404).json({ error: 'Project not found' });
       }
-      if (project.ownership !== decoded.id) {
-        return res.status(403).json({ error: 'Forbidden: Only the owner can delete this project' });
-      }
+      
+       console.log("🔎 Debug Delete:");
+    console.log("DB Ownership:", project.ownership, typeof project.ownership);
+    console.log("Decoded User:", decoded.id, typeof decoded.id);
+
+      // if (project.ownership !== decoded.id) {
+      //   return res.status(403).json({ error: 'Forbidden: Only the owner can delete this project' });
+      // }
+      if (project.ownership.toString() !== decoded.id.toString()) {
+  return res.status(403).json({
+    error: 'Forbidden: Only the owner can delete this project',
+    details: { projectOwnership: project.ownership.toString(), userId: decoded.id.toString() }
+  });
+}
       await prisma.projects.delete({
         where: { id: String(id) },
       });

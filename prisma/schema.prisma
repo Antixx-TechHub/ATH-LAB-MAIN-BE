@@ -9,13 +9,13 @@ datasource db {
 }
 
 model users {
-  id        BigInt    @id @default(autoincrement())
-  username  String    @unique @db.VarChar(100)
-  password  String    @db.VarChar(255) // Store hashed passwords
-  firstname String    @db.VarChar(100)
-  lastname  String    @db.VarChar(100)
-  role      String[]  @db.VarChar(100) // e.g., ["admin", "user"]
-  projects  projects[] @relation("ProjectOwnership")
+  id BigInt @id @default(autoincrement())
+  username String @unique @db.VarChar(100)
+  password String @db.VarChar(255) // Store hashed passwords
+  firstname String @db.VarChar(100)
+  lastname String @db.VarChar(100)
+  role String @db.VarChar(100) // e.g., "admin" or "admin,user" 
+  projects projects[] @relation("ProjectOwnership")
   teamProjects projects[] @relation("ProjectTeam")
 }
 

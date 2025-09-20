@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "reema@gmail.com",
+      "password": "reema123",
+      "address": "Thane",
+      "id": "131a"
+    },
+    {
+      "username": "john_doe",
+      "password": "john123",
+      "address": "Pune",
+      "id": "6ae2"
+    },
+    {
+      "username": "Sam_Joe",
+      "password": "sam123",
+      "address": "Delhi",
+      "id": "eb29"
+    },
+    {
+      "username": "Ram Joshi",
+      "password": "ram123",
+      "address": "Nashik",
+      "id": "82a2"
+    }
+  ]
+}
