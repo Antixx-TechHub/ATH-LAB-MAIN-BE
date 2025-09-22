@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-//  Initialize Gemini once at the top
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function getReasonedResponse(prompt) {
