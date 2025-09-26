@@ -35,37 +35,9 @@ const handleSend = async (e) => {
   }
 };
 
-  // const handleSend = async (e) => {
-  //   e.preventDefault();
-  //   if (!input.trim()) return;
+  
 
-  //   const userMessage = { text: input, isUser: true };
-  //   setMessages((prev) => [...prev, userMessage]);
-
-  //   console.log("Sending prompt:", input); //  Log what's being sent
-
-  //   try {
-  //     const res = await fetch("/api/route", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ prompt: input }),
-  //     });
-
-  //     console.log("Response status:", res.status); //  Response status
-
-  //     const data = await res.json();
-  //     console.log("API response data:", data); //  Actual response
-
-  //     const botMessage = { text: data.answer, isUser: false };
-  //     setMessages((prev) => [...prev, botMessage]);
-  //   } catch (error) {
-  //     console.error("Error calling API:", error); //Catch & log error
-  //     const errorMessage = { text: "Error fetching response", isUser: false };
-  //     setMessages((prev) => [...prev, errorMessage]);
-  //   }
-
-  //   setInput("");
-  // };
+ 
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

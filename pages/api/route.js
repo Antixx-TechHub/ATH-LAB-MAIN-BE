@@ -1,5 +1,5 @@
-// import { getReasonedResponse } from "@/utils/gemini";
-import { getReasonedResponse } from '../../utils/gemini';
+
+import { getReasonedResponse } from '../../utils/geminiAI_onDB';
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { message } = req.body;
