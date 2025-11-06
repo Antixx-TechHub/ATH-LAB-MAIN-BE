@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql",
+  provider = "postgresql"
   url      = "postgresql://postgres:EaEe1BeGEbfFeFaB4AdB3BFa4CcAF15A@viaduct.proxy.rlwy.net:49077/athlabs?pgbouncer=true&connection_limit=1&sslmode=require"
 }
 
