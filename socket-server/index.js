@@ -69,7 +69,7 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { initSocketServer } from "../src/lib/socketServer.js"; // adjust path if needed
+import { initSocketServer } from "../src/lib/socketServer.mjs"; // adjust path if needed
 
 const APP_PORT = process.env.SOCKET_PORT || 3001;
 const SECRET = process.env.SOCKET_SECRET || "supersecret";
