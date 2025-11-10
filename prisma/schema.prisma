@@ -1,37 +1,49 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql",
-  url      = "postgresql://postgres:EaEe1BeGEbfFeFaB4AdB3BFa4CcAF15A@viaduct.proxy.rlwy.net:49077/athlabs?pgbouncer=true&connection_limit=1&sslmode=require"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model users {
-  id BigInt @id @default(autoincrement())
-  username String @unique @db.VarChar(100)
-  password String @db.VarChar(255) // Store hashed passwords
-  firstname String @db.VarChar(100)
-  lastname String @db.VarChar(100)
-  role String @db.VarChar(100) // e.g., "admin" or "admin,user" 
-  projects projects[] @relation("ProjectOwnership")
-  teamProjects projects[] @relation("ProjectTeam")
+  id               BigInt     @id @default(autoincrement())
+  username         String     @unique @db.VarChar(100)
+  password         String     @db.VarChar(255)
+  firstname        String     @db.VarChar(100)
+  lastname         String     @db.VarChar(100)
+  role             String     @db.VarChar(100)
+  projects         projects[] @relation("ProjectOwnership")
+  sentRequests     requests[] @relation("SentRequests")
+  receivedRequests requests[] @relation("ReceivedRequests")
+  teamProjects     projects[] @relation("ProjectTeam")
 }
 
 model projects {
-  id            BigInt    @id @default(autoincrement())
-  title         String    @db.VarChar(255)
-  projectdomain String    @db.VarChar(100)
-  description   String?   @db.Text
-  liveUrl       String?   @db.VarChar(255)
-  GitHubUrl     String?   @db.VarChar(255)
+  id            BigInt   @id @default(autoincrement())
+  title         String   @db.VarChar(255)
+  projectdomain String   @db.VarChar(100)
+  description   String?
+  liveUrl       String?  @db.VarChar(255)
+  GitHubUrl     String?  @db.VarChar(255)
   UserAccess    String[]
-  activeStatus  Boolean   @default(true)
-  updatedBy     String    @db.VarChar(100)
-  lastUpdatedAt DateTime  @db.Timestamptz
+  activeStatus  Boolean  @default(true)
+  updatedBy     String   @db.VarChar(100)
+  lastUpdatedAt DateTime @db.Timestamptz(6)
   ownership     BigInt
   Team          BigInt[]
-  owner         users     @relation("ProjectOwnership", fields: [ownership], references: [id])
-  teamMembers   users[]   @relation("ProjectTeam")
+  owner         users    @relation("ProjectOwnership", fields: [ownership], references: [id])
+  teamMembers   users[]  @relation("ProjectTeam")
+}
+
+model requests {
+  id            BigInt   @id @default(autoincrement())
+  fromUserId    BigInt
+  toUserId      BigInt
+  roleRequested String   @db.VarChar(100)
+  status        String   @default("Pending")
+  createdAt     DateTime @default(now())
+  fromUser      users    @relation("SentRequests", fields: [fromUserId], references: [id])
+  toUser        users    @relation("ReceivedRequests", fields: [toUserId], references: [id])
 }

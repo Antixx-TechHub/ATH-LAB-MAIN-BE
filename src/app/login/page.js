@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { initSocket } from "../../lib/socketClient"
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,42 +12,48 @@ const Login = () => {
   const router = useRouter();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    if (!username.trim()) {
-      setError("Username is required");
-      return;
-    }
-    if (!password.trim()) {
-      setError("Password is required");
-      return;
-    }
-
-    setIsLoading(true);
-
-try {
-  const response = await fetch("/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username, password }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Login failed");
+  if (!username.trim()) {
+    setError("Username is required");
+    return;
+  }
+  if (!password.trim()) {
+    setError("Password is required");
+    return;
   }
 
-  const { user } = await response.json(); 
-  router.push("/dashboard"); // Redirect to dashboard
-} catch (err) {
-  setError("Invalid credentials");
-  console.error("Authentication error:", err);
-} finally {
-  setIsLoading(false);
-}
-  };
+  setIsLoading(true);
+
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Login failed");
+    }
+
+    const { user, token } = await response.json(); // <- Change: also get token if your API returns it
+
+    // ----------- NEW CODE: initialize socket here -----------
+    initSocket(user.id, token); // <-- added this line
+    // -------------------------------------------------------
+
+    router.push("/dashboard"); // Redirect to dashboard
+  } catch (err) {
+    setError("Invalid credentials");
+    console.error("Authentication error:", err);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
