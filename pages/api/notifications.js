@@ -40,6 +40,20 @@ export default async function handler(req, res) {
         };
       }
 
+      else if (userRole === "project_admin") {
+        if (!userId) {
+          return res.status(400).json({ message: "User ID required for project_admin" });
+        }
+
+        whereCondition = {
+          fromUserId: BigInt(userId),
+          OR: [
+            { status: "Accepted" },
+            { status: "Rejected" },
+          ],
+        };
+      }
+
       // Invalid role case
       else {
         return res.status(400).json({ message: "Invalid role specified" });

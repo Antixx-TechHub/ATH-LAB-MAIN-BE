@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   serialize('authToken', token, {
     path: '/',
     httpOnly: true,
-    sameSite: 'strict',
+    sameSite: 'lax',
     maxAge: 3600,
     secure: process.env.NODE_ENV === 'production',
   })

@@ -21,6 +21,23 @@ export default async function handler(req, res) {
       },
     });
 
+
+
+     if (message === "Accepted") {
+      // Get the requested role from the same request record
+      const requestData = await prisma.requests.findUnique({
+        where: { id: Number(requestId) },
+        select: { roleRequested: true },
+      });
+
+      if (requestData && requestData.roleRequested) {
+        await prisma.users.update({
+          where: { id: Number(toUserId) },
+          data: { role: requestData.roleRequested },
+        });
+      }
+    }
+
     // Notify via socket server
     const socketServerUrl = process.env.SOCKET_SERVER_URL || "http://localhost:3001";
 
