@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { initSocket } from "../../lib/socketClient"
+import { useUser } from "@/context/UserContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { setUser } = useUser();
 
   const handleLogin = async (e) => {
   e.preventDefault();
@@ -40,6 +42,9 @@ const Login = () => {
     }
 
     const { user, token } = await response.json(); // <- Change: also get token if your API returns it
+    
+    // ✅ Save user globally in context
+    setUser(user);
 
     // ----------- NEW CODE: initialize socket here -----------
     initSocket(user.id, token); // <-- added this line

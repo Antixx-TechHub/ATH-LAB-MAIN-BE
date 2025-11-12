@@ -13,6 +13,7 @@ import { LayoutGrid, Table as TableIcon, Plus } from "lucide-react";
 import AddProjectModal from "@/component/AddProjectModal";
 import { initSocket } from "@/lib/socketClient";
 import toast from "react-hot-toast";
+import { useUser } from "@/context/UserContext";
 
 const LandingDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,8 +22,8 @@ const LandingDashboard = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [viewMode, setViewMode] = useState("grid");
-  const [user, setUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user, setUser } = useUser();
 
   const [cardsPerPage] = useState(6);
   const {
@@ -34,103 +35,359 @@ const LandingDashboard = () => {
   const router = useRouter();
 
 
- useEffect(() => {
+//  useEffect(() => {
+//     if (!user?.id) return;
+
+//     console.log("🔌 Connecting socket for user:", user.id);
+//     const socket = initSocket(user.id);
+
+//     // 🧭 Listen for events coming to this user
+//     socket.on("connect", () => {
+//       console.log("✅ Connected to Socket.IO server as user:", user.id);
+//     });
+
+//     // ✅ When a normal user sends a request to admin
+//     socket.on("newRequest", (request) => {
+//       console.log("📩 New request received:", request);
+
+//       if (user.role === "admin") {
+//         toast.success(`New1 request from User ${request.fromUserId} for role ${request.roleRequested}`);
+//       }
+
+//     });
+
+//     // ✅ When admin replies to a specific user
+//     socket.on("adminReply", async (reply) => {
+//       console.log("📬 Reply from Admin:", reply);
+
+//       if (user.role !== "admin") {
+//          toast(`Admin replied: ${reply.message}`, { icon: "💬" });
+//       }
+
+//           if (reply.message === "Accepted") {
+//       try {
+//         const res = await fetch("/api/me", { credentials: "include" });
+//         const data = await res.json();
+//         if (data.user) {
+//           setUser(data.user); // update role in state/context instantly
+//           toast.success(`🎉 Your role has been updated to ${data.user.role}`);
+//         }
+//       } catch (error) {
+//         console.error("Error refreshing user role:", error);
+//       }
+//     }
+
+
+
+//       // Example: setNotifications((prev) => [...prev, reply]);
+//     });
+
+//     // ✅ Optional: handle disconnects
+//     socket.on("disconnect", () => {
+//       console.log("❌ Disconnected from socket server");
+//     });
+
+//     // ✅ Cleanup on component unmount
+//     return () => {
+//       socket.off("connect");
+//       socket.off("newRequest");
+//       socket.off("adminReply");
+//       socket.off("disconnect");
+//       socket.disconnect();
+//     };
+//   }, [user?.id, user?.role]);
+  
+
+
+//   //  Fetch User + Projects
+//   useEffect(() => {
+//     if (!user?.id) return;
+//     // Fetch projects
+//     fetch("/api/projects", {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       credentials: "include",
+//     })
+//       .then((response) => {
+//         if (!response.ok) {
+//           if (response.status === 401) {
+//             router.push("/login");
+//             return;
+//           }
+//           throw new Error(
+//             `Failed to fetch data: ${response.status} ${response.statusText}`
+//           );
+//         }
+//         return response.json();
+//       })
+//       .then((data) => {
+//         setCards(data);
+//         const uniqueDomains = [
+//           "All",
+//           ...new Set(data.map((card) => card.projectdomain).filter(Boolean)),
+//         ];
+//         setAvailableDomains(uniqueDomains);
+//         setSelectedDomains(["All"]);
+//         setLoading(false);
+//         console.log("Fetched projects:", data);
+//       })
+//       .catch((err) => {
+//         console.error("Fetch error:", err);
+//         setError(err.message);
+//         if (err.message.includes("401")) router.push("/login");
+//         setLoading(false);
+//       });
+//   }, [router, setAvailableDomains, setSelectedDomains]);
+
+//   //  Filtering & Pagination
+//   const filteredCards = selectedDomains.includes("All")
+//     ? cards
+//     : cards.filter((card) => selectedDomains.includes(card.projectdomain));
+
+//   const indexOfLastCard = currentPage * cardsPerPage;
+//   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+//   const currentCards = filteredCards.slice(indexOfFirstCard, indexOfLastCard);
+//   const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+
+//   const paginate = (pageNumber) => {
+//     if (pageNumber >= 1 && pageNumber <= totalPages) {
+//       setCurrentPage(pageNumber);
+//     }
+//   };
+
+//   //  Delete Project
+//   const handleDelete = async (id) => {
+//     try {
+//       const response = await fetch("/api/projects", {
+//         method: "DELETE",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ id }),
+//         credentials: "include",
+//       });
+
+//       if (!response.ok) {
+//         const data = await response.json();
+//         throw new Error(
+//           data.error ||
+//             `Failed to delete: ${response.status} ${response.statusText}`
+//         );
+//       }
+
+//       setCards(cards.filter((card) => card.id !== id));
+//     } catch (err) {
+//       console.error("Delete Error:", err.message);
+//       toast.error(`${err.message}`);
+//     }
+//   };
+
+//   //  Update Project
+//   const handleUpdate = async (id, updatedData) => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       const response = await fetch("/api/projects", {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({ id, ...updatedData }),
+//         credentials: "include",
+//       });
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         throw new Error(
+//           errorData.error ||
+//             `Failed to update: ${response.status} ${response.statusText}`
+//         );
+//       }
+//       const updatedProject = await response.json();
+//       setCards(
+//         cards.map((card) => (card.id === id.toString() ? updatedProject : card))
+//       );
+//     } catch (err) {
+//       console.error("Update error:", err);
+//       if (err.message.includes("403")) {
+//         toast.success(`Only the owner can edit this project.`);
+//       } else {
+        
+//         toast.error(`Error: ${err.message}`);
+//       }
+//     }
+//   };
+
+//   //  Create Project
+//   const handleCreate = async (newProjectData) => {
+//     try {
+//       const response = await fetch("/api/projects", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(newProjectData),
+//         credentials: "include",
+//       });
+//       if (!response.ok) {
+//         const errorData = await response.json();
+//         throw new Error(
+//           errorData.error ||
+//             `Failed to create: ${response.status} ${response.statusText}`
+//         );
+//       }
+//       const createdProject = await response.json();
+//       setCards([...cards, createdProject]);
+//       setIsModalOpen(false);
+//       toast.success(`Project created successfully!`);
+//     } catch (err) {
+//       console.error("Create Error:", err.message);
+//       toast.error(`${err.message}`);
+//     }
+//   };
+
+//   if (loading && !error) return <p className="text-gray-600">Loading...</p>;
+//   if (error) return <p className="text-red-600">Error: {error}</p>;
+
+ 
+  // --- Ensure user data is loaded on mount / reload
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch("/api/me", { credentials: "include" });
+        if (!res.ok) {
+          // not authenticated -> send to login
+          router.push("/login");
+          return;
+        }
+        const data = await res.json();
+        if (data.user) {
+          setUser(data.user);
+        } else {
+          router.push("/login");
+        }
+      } catch (err) {
+        console.error("User fetch failed:", err);
+        router.push("/login");
+      }
+    };
+
+    // fetch user only if not set
+    if (!user?.id) {
+      fetchUser();
+    }
+  }, [user?.id, router, setUser]);
+  const handleSates = () => {
+    console.log("useStae",user);
+  }
+
+  // --- Socket setup (only after user available)
+  useEffect(() => {
     if (!user?.id) return;
 
     console.log("🔌 Connecting socket for user:", user.id);
     const socket = initSocket(user.id);
 
-    // 🧭 Listen for events coming to this user
     socket.on("connect", () => {
       console.log("✅ Connected to Socket.IO server as user:", user.id);
     });
 
-    // ✅ When a normal user sends a request to admin
     socket.on("newRequest", (request) => {
+
       console.log("📩 New request received:", request);
-
       if (user.role === "admin") {
-        toast.success(`New1 request from User ${request.fromUserId} for role ${request.roleRequested}`);
+        toast.success(
+          `New request from User ${request.fromUserId} for role ${request.roleRequested}`
+        );
       }
-
     });
 
-    // ✅ When admin replies to a specific user
-    socket.on("adminReply", (reply) => {
+    socket.on("adminReply", async (reply) => {
       console.log("📬 Reply from Admin:", reply);
 
       if (user.role !== "admin") {
-         toast(`Admin replied: ${reply.message}`, { icon: "💬" });
+        // toast(`Admin replied: ${reply.message}`, { icon: "💬" });
       }
-      // Example: setNotifications((prev) => [...prev, reply]);
+
+      if (reply.message === 'Accepted') {
+        try {
+          // console.log("Fetching updated user role...",reply);
+          const res = await fetch("/api/me", { credentials: "include" });
+          const data = await res.json();
+          console.log("Updated user data:", data);
+          if (data.user) {
+            setUser(data.user); // update role in state/context instantly
+            toast.success(`🎉 Your role has been updated to ${data.user.role}`);
+          }
+        } catch (error) {
+          console.error("Error refreshing user role:", error);
+        }
+      }
     });
 
-    // ✅ Optional: handle disconnects
     socket.on("disconnect", () => {
       console.log("❌ Disconnected from socket server");
     });
 
-    // ✅ Cleanup on component unmount
+    // cleanup
     return () => {
-      socket.off("connect");
-      socket.off("newRequest");
-      socket.off("adminReply");
-      socket.off("disconnect");
-      socket.disconnect();
+      try {
+        socket.off("connect");
+        socket.off("newRequest");
+        socket.off("adminReply");
+        socket.off("disconnect");
+        socket.disconnect();
+      } catch (err) {
+        // ignore if socket already cleaned
+      }
     };
-  }, [user?.id, user?.role]);
-  
+  }, [user?.id]);
 
-
-  //  Fetch User + Projects
-  useEffect(() => {
-    // Fetch logged-in user
-    fetch("/api/me", { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) setUser(data.user);
+  // --- Fetch projects (only after user is available)
+  const fetchProjects = async () => {
+    if (!user?.id) return;
+    setLoading(true);
+    try {
+      const response = await fetch("/api/projects", {
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
 
-      
-
-    // Fetch projects
-    fetch("/api/projects", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then((response) => {
-        if (!response.ok) {
-          if (response.status === 401) {
-            router.push("/login");
-            return;
-          }
-          throw new Error(
-            `Failed to fetch data: ${response.status} ${response.statusText}`
-          );
+      if (!response.ok) {
+        if (response.status === 401) {
+          router.push("/login");
+          return;
         }
-        return response.json();
-      })
-      .then((data) => {
-        setCards(data);
-        const uniqueDomains = [
-          "All",
-          ...new Set(data.map((card) => card.projectdomain).filter(Boolean)),
-        ];
-        setAvailableDomains(uniqueDomains);
-        setSelectedDomains(["All"]);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        setError(err.message);
-        if (err.message.includes("401")) router.push("/login");
-        setLoading(false);
-      });
-  }, [router, setAvailableDomains, setSelectedDomains]);
+        throw new Error(
+          `Failed to fetch data: ${response.status} ${response.statusText}`
+        );
+      }
 
-  //  Filtering & Pagination
+      const data = await response.json();
+      setCards(data);
+      const uniqueDomains = [
+        "All",
+        ...new Set(data.map((card) => card.projectdomain).filter(Boolean)),
+      ];
+      setAvailableDomains(uniqueDomains);
+      setSelectedDomains(["All"]);
+      setLoading(false);
+      console.log("Fetched projects:", data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError(err.message || "Failed to fetch projects");
+      if (err.message && err.message.includes("401")) {
+        router.push("/login");
+      }
+      setLoading(false);
+    }
+  }; 
+
+  useEffect(() => {
+    // call fetchProjects only when user becomes available
+    if (user?.id) {
+      fetchProjects();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
+
+  // --- Filtering & Pagination
   const filteredCards = selectedDomains.includes("All")
     ? cards
     : cards.filter((card) => selectedDomains.includes(card.projectdomain));
@@ -146,7 +403,7 @@ const LandingDashboard = () => {
     }
   };
 
-  //  Delete Project
+  // --- Delete Project
   const handleDelete = async (id) => {
     try {
       const response = await fetch("/api/projects", {
@@ -164,14 +421,15 @@ const LandingDashboard = () => {
         );
       }
 
-      setCards(cards.filter((card) => card.id !== id));
+      setCards((prev) => prev.filter((card) => card.id !== id));
+      toast.success("Project deleted");
     } catch (err) {
       console.error("Delete Error:", err.message);
       toast.error(`${err.message}`);
     }
   };
 
-  //  Update Project
+  // --- Update Project
   const handleUpdate = async (id, updatedData) => {
     try {
       const token = localStorage.getItem("token");
@@ -192,46 +450,35 @@ const LandingDashboard = () => {
         );
       }
       const updatedProject = await response.json();
-      setCards(
-        cards.map((card) => (card.id === id.toString() ? updatedProject : card))
+      setCards((prev) =>
+        prev.map((card) =>
+          card.id === id.toString() ? updatedProject : card
+        )
       );
+      toast.success("Project updated");
     } catch (err) {
       console.error("Update error:", err);
       if (err.message.includes("403")) {
         toast.success(`Only the owner can edit this project.`);
       } else {
-        
         toast.error(`Error: ${err.message}`);
       }
     }
   };
 
-  //  Create Project
-  const handleCreate = async (newProjectData) => {
-    try {
-      const response = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newProjectData),
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error ||
-            `Failed to create: ${response.status} ${response.statusText}`
-        );
-      }
-      const createdProject = await response.json();
-      setCards([...cards, createdProject]);
-      setIsModalOpen(false);
-      toast.success(`Project created successfully!`);
-    } catch (err) {
-      console.error("Create Error:", err.message);
-      toast.error(`${err.message}`);
-    }
+  // --- Create Project (opens modal)
+  const handleCreate = () => {
+    setIsModalOpen(true);
   };
 
+  // called by modal after successful creation
+  const handleProjectAdded = async () => {
+    setIsModalOpen(false);
+    toast.success("Project created successfully!");
+    await fetchProjects();
+  };
+
+  // --- loading / error display
   if (loading && !error) return <p className="text-gray-600">Loading...</p>;
   if (error) return <p className="text-red-600">Error: {error}</p>;
 
@@ -251,13 +498,15 @@ const LandingDashboard = () => {
 
         {/* Top Controls */}
         <div className="flex items-center justify-end px-6 pt-4">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <Plus className="w-5 h-5" />
-            Add New Project
-          </button>
+          {user?.role !== "enduser" && (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <Plus className="w-5 h-5" />
+              Add New Project
+            </button>
+          )}
           <div className="flex gap-3 ml-4">
             <button
               onClick={() => setViewMode("grid")}
@@ -279,6 +528,7 @@ const LandingDashboard = () => {
             >
               <TableIcon className="w-5 h-5" />
             </button>
+            
           </div>
         </div>
 
@@ -309,8 +559,9 @@ const LandingDashboard = () => {
                   onDelete={() => handleDelete(card.id)}
                   onUpdate={(updatedData) => handleUpdate(card.id, updatedData)}
                   onCreate={handleCreate}
-                  ownership={card.ownership}
                   currentUserId={user?.id}
+                  currentUserRole={user?.role}
+                  ownership={card.ownership}
                 />
               ))}
             </div>
