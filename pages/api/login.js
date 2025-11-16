@@ -17,6 +17,7 @@ export default async function handler(req, res) {
 
   try {
     const user = await prisma.users.findUnique({ where: { username } });
+    console.log('User ---',user);
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
   serialize('authToken', token, {
     path: '/',
     httpOnly: true,
-    sameSite: 'strict',
+    sameSite: 'lax',
     maxAge: 3600,
     secure: process.env.NODE_ENV === 'production',
   })
